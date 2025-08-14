@@ -11,4 +11,5 @@ export interface LogEntry {
   spanId: string;
   commit: string;
   metadata: Record<string, unknown>;
+  [key: string]: any;
 }

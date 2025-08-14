@@ -33,3 +33,36 @@ export const addLog = (log: LogEntry) => {
   writeLogs(logs);
   return log;
 };
+
+export const filterLogs = (filters: Record<string, any>,search:string) => {
+  let logs = readLogs();
+  return logs.filter(log => {
+    const matchesFilters = Object.entries(filters).every(([key, value]) => {
+      if (!value) return true; // skip empty filters
+      if (key === "timestamp_start") return new Date(log.timestamp) >= new Date(value);
+      if (key === "timestamp_end") return new Date(log.timestamp) <= new Date(value);
+      return log[key]?.toString().toLowerCase().includes(value.toString().toLowerCase());
+    });
+
+    // Apply search on message field if search term exists
+    const matchesSearch = search
+      ? log.message?.toLowerCase().includes(search.toLowerCase())
+      : true;
+
+    return matchesFilters && matchesSearch;
+  });
+};
+
+export const sortLogs = (
+  logs: any[],
+  sortBy: string,
+  order: "asc" | "desc"
+) => {
+  return logs.sort((a, b) => {
+    const aVal = a[sortBy];
+    const bVal = b[sortBy];
+    if (aVal < bVal) return order === "asc" ? -1 : 1;
+    if (aVal > bVal) return order === "asc" ? 1 : -1;
+    return 0;
+  });
+};
