@@ -2,6 +2,9 @@
 
 This project is a **log ingestion and filtering application** that allows developers to ingest logs via an API and view, search, and filter them through a web-based dashboard.
 
+All API responses use proper status codes, with validations and exception handling in place.  
+As per the PDF, a JSON file is used instead of a database, and the system auto-creates it if not present.
+
 ## 📂 Project Structure
 
 This is a **monorepo** containing both the **frontend** and **backend**:
