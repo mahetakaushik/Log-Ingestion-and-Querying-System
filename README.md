@@ -21,7 +21,7 @@ This is a **monorepo** containing both the **frontend** and **backend**:
 ### 1. Clone the Repository
 ```bash
 git clone git@github.com:mahetakaushik/Log-Ingestion-and-Querying-System.git
-cd logs-system/
+cd Log-Ingestion-and-Querying-System
 ```
 
 ### 2. Install Dependencies
@@ -52,7 +52,7 @@ npm run dev
 #### Start Frontend App
 ```bash
 cd ../frontend
-npm start
+npm run dev
 ```
 - Frontend will run on: `http://localhost:5173`
 
@@ -76,7 +76,7 @@ curl --location 'http://localhost:3000/api/logs' --header 'Content-Type: applica
 
 ### **Get Logs**
 ```bash
-curl --location 'http://localhost:3000/api/logs?level=error&page=2&limit=1'
+curl --location 'http://localhost:3000/api/logs?level=error&page=1&limit=10'
 ```
 
 ---
